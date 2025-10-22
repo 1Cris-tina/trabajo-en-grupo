@@ -106,7 +106,36 @@ def calculo_tasas_notas(lista_alumnos):
 
 #DYAN
 def mostrar_clasificacion(lista_alumnos):
-    pass
+    """
+    Esto es un docstring en el que documentaré la función:
+    Muestra la clasificación de los alumnos según su promedio.
+    
+    Podemos tener una lista que contenga diccionarios.
+    Cada diccionario dentro de la lista tiene los datos de un alumno(nombre y promedio)
+
+    La función ordena los alumnos basándose en el valor asociado a 'promedio' y
+    muestra el ranking en pantalla.
+    """
+    # Ordenamos la lista de alumnos usando 'sorted(lista_alumnos)
+    # key=lambda x: x['promedio'] Le dice a sorted() que utilice el valor promedio para ordenador
+    # reverse=True hace que sea de mayor a menor, si fuera reverse=False(pordefecto); de menor a mayor
+    lista_ordenada = sorted(lista_alumnos, key=lambda x: x['promedio'], reverse=True)
+
+# Mostramos encabezado de la clasificación
+    print("=== CLASIFICACIÓN GENERAL ===")
+    
+    # Enumeramos los alumnos ordenados para mostrar su posición en el ranking
+    for i, alumno in enumerate(lista_ordenada, start=1):
+        # Imprimimos posición, nombre y promedio con un decimal.
+        # con i, indicamos en iterable que es lista_ordenada.
+        # Con alumno, indicamos el diccionario
+        # Con enumerate(lista_ordenada,start=1) le decimos que enumere en el ranking empezando por 1.
+        # con start=1, el valor inicial del ranking.
+        print(f"{i}. {alumno['nombre']} -> {alumno['promedio']:.1f}")
+        # Mostramos encabezado de la clasificación
+        # Muestra el i, que es la posición del alumno en el ranking
+        # {alumno['nombre']} muestra el nombre del alumno, en relación al diccionario
+        # {alumno['promedio']:.1f}") Muestra el promedio del alumno, pero con un formato específico (con un decimal)
 
 #DIEGO
 def mostrar_reporte(lista_reporte):
