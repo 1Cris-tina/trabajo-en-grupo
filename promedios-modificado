@@ -1,0 +1,69 @@
+# === AYYOUB - Función de entrada de datos ===
+
+def pedir_datos():
+    """
+    Solicita los nombres y notas de varios alumnos.
+    Retorna una lista de diccionarios con formato:
+    [{"nombre": str, "notas": [float, float, ...]}, ...]
+    """
+    lista_alumnos = []
+
+    while True:
+        nombre = input("Escribe el nombre del alumno (o deja vacío para terminar): ").strip()
+        if nombre == "":
+            break
+
+        # Validar que el nombre solo contenga letras o espacios
+        if not all(c.isalpha() or c.isspace() for c in nombre):
+            print("ERROR: solo se permite el uso de letras y espacios. Inténtalo de nuevo.")
+            continue
+
+        # Pedir las notas
+        notas_str = input(f"Escribe las notas del alumno {nombre} separadas por comas: ")
+
+        try:
+            notas = [float(nota.strip()) for nota in notas_str.split(",") if nota.strip() != ""]
+        except ValueError:
+            print("ERROR: introduce los números separados por comas. Intenta de nuevo.")
+            continue
+
+        # Validación de notas
+        if not notas:
+            print("ERROR: introduce al menos una nota.")
+            continue
+        if any(n < 0 or n > 10 for n in notas):
+            print("ERROR: las notas solo pueden ser de 0 a 10.")
+            continue
+
+        alumno = {"nombre": nombre, "notas": notas}
+        lista_alumnos.append(alumno)
+
+    return lista_alumnos
+
+
+# === JUAN - Funciones de cálculo de promedios ===
+
+def calcular_promedio(lista_notas):
+    """
+    Calcula el promedio de una lista de notas de un alumno.
+    Retorna 0 si la lista está vacía.
+    """
+    if not lista_notas:
+        return 0
+    return sum(lista_notas) / len(lista_notas)
+
+
+def promedio_grupo(lista_alumnos):
+    """
+    Calcula el promedio general del grupo.
+    Retorna 0 si no hay alumnos en la lista.
+    """
+    if not lista_alumnos:
+        return 0
+
+    total_promedios = 0
+    for alumno in lista_alumnos:
+        promedio_alumno = calcular_promedio(alumno["notas"])
+        total_promedios += promedio_alumno
+
+    return total_promedios / len(lista_alumnos)
