@@ -39,10 +39,9 @@ def pedir_datos():
 
     return lista_alumnos
 
-
-
-    
+   
 # JUAN - Función de cálculo de promedio
+
 
 def calcular_promedio(lista_notas):
     """
@@ -78,10 +77,7 @@ def promedio_grupo(lista_alumnos):
 
 
 
-    
-#JUAN
-def calcular_promedio(lista_notas):
-    pass
+ 
 
 #DAVID
 def evaluar_aprobado(promedio):
@@ -98,3 +94,4 @@ def mostrar_clasificacion(lista_alumnos):
 #DIEGO
 def mostrar_reporte(lista_reporte):
     pass
+
