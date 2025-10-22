@@ -39,9 +39,7 @@ def pedir_datos():
 
     return lista_alumnos
 
-   
 # JUAN - Función de cálculo de promedio
-
 
 def calcular_promedio(lista_notas):
     """
@@ -61,7 +59,7 @@ def promedio_grupo(lista_alumnos):
     Calcula el promedio general del grupo a partir de la lista de alumnos.
     Parámetros:
         lista_alumnos (list): Lista de diccionarios con la estructura:
-                              {"nombre": str, "notas": [float, float, ...]}
+        {"nombre": str, "notas": [float, float, ...]}
     Retorna:
         float: Promedio general del grupo.
     """
@@ -75,22 +73,36 @@ def promedio_grupo(lista_alumnos):
 
     return total_promedios / len(lista_alumnos)
 
-
-
- 
-
 #DAVID
+
 def evaluar_aprobado(calcular_promedio):
-   if calcular_promedio >= 5:
-    return "aprobado"
-   else:
-       return "suspenso"
-
-
+    if calcular_promedio >= 5:
+        return "aprobado"
+    else:
+        return "suspenso"
 
 #MARCOS
-def calculo_tasas(lista_reporte):
-    pass
+
+def calculo_tasas_notas(lista_alumnos):
+    if not lista_alumnos:
+        return None, None, 0
+
+    #BUSCAMOS LA NOTA MÁS ALTA Y EL ALUMNO QUE LA TIENE
+    nota_max = max(
+        ((alumno, max(alumno["notas"])) for alumno in lista_alumnos),
+        key=lambda x: x[1]
+    )
+    #BUSCAMOS LA NOTA MÁS BAJA Y EL ALUMNO QUE LA TIENE
+    nota_min = min(
+        ((alumno, min(alumno["notas"])) for alumno in lista_alumnos),
+        key=lambda x: x[1]
+    )
+    #CONTAR APROBADOS
+    aprobados = sum(1 for a in lista_alumnos if a["estado"] == "Aprobado")
+    #CALCULAR PORCENTAJE
+    tasa_aprobados = (aprobados / len(lista_alumnos)) * 100
+    #DEVUELVE RESULTADOS
+    return nota_max, nota_min, tasa_aprobados
 
 #DYAN
 def mostrar_clasificacion(lista_alumnos):
