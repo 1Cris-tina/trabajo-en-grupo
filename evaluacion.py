@@ -138,6 +138,54 @@ def mostrar_clasificacion(lista_alumnos):
         # {alumno['promedio']:.1f}") Muestra el promedio del alumno, pero con un formato específico (con un decimal)
 
 #DIEGO
-def mostrar_reporte(lista_reporte):
-    pass
+def mostrar_reporte(lista_alumnos):
+    
+    print("\n==========================================================")
+    print("========= Resumen de Resultados Individuales ===========")
+    print("==========================================================")
+    
+    if not lista_alumnos:
+        print("No se recibieron datos de alumnos para el reporte.")
+        return
 
+    total_alumnos = len(lista_alumnos)
+    aprobados_count = 0
+    suspensos_count = 0
+
+    for alumno in lista_alumnos:
+        
+        nombre = alumno["nombre"]
+        notas = alumno["notas"]
+        
+        media_alumno = calcular_promedio(notas)
+            
+        estado = evaluar_aprobado(media_alumno)
+            
+        if estado == "aprobado":
+            aprobados_count += 1
+        else:
+            suspensos_count += 1
+
+        print(f"  {nombre}: {notas}")
+        print(f"    -> Media: {media_alumno:.2f} ({estado})\n")
+
+
+    print("==========================================================")
+    print("============== Estadísticas Generales ==================")
+    print("==========================================================")
+    
+    media_grupo = promedio_grupo(lista_alumnos)
+    
+    print(f"Nota Media del Grupo: {media_grupo:.2f}")
+
+    print("\n--- Tasas de Aprobados y Suspensos ---")
+    if total_alumnos > 0:
+        tasa_aprobados = (aprobados_count / total_alumnos) * 100
+        tasa_suspensos = (suspensos_count / total_alumnos) * 100
+        
+        print(f"Total Aprobados: {aprobados_count} (Tasa: {tasa_aprobados:.2f}%)")
+        print(f"Total Suspensos: {suspensos_count} (Tasa: {tasa_suspensos:.2f}%)")
+    else:
+        print("No hay alumnos para calcular tasas.")
+    
+    print("==========================================================")
