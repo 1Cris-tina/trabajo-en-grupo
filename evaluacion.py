@@ -80,8 +80,13 @@ def promedio_grupo(lista_alumnos):
  
 
 #DAVID
-def evaluar_aprobado(promedio):
-    pass
+def evaluar_aprobado(calcular_promedio):
+   if calcular_promedio >= 5:
+    return "aprobado"
+   else:
+       return "suspenso"
+
+
 
 #MARCOS
 def calculo_tasas(lista_reporte):
