@@ -40,17 +40,6 @@ def pedir_datos():
     return lista_alumnos
 
 
-
-    
-#comprobacion de funcion
-#if __name__ == "__main__":
-#alumnos = pedir_datos ()
-#print ("\nlista de los alumnos introducidos:")
-#print(alumnos)
-
-    
-
-
 #JUAN
 def calcular_promedio(lista_notas):
     pass
