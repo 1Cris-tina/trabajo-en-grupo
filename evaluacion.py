@@ -160,6 +160,9 @@ def mostrar_reporte(lista_alumnos):
         media_alumno = calcular_promedio(notas)
             
         estado = evaluar_aprobado(media_alumno)
+
+        alumno["promedio"] = media_alumno
+        alumno["estado"] = estado
             
         if estado == "aprobado":
             aprobados_count += 1
@@ -177,6 +180,8 @@ def mostrar_reporte(lista_alumnos):
     media_grupo = promedio_grupo(lista_alumnos)
     
     print(f"Nota Media del Grupo: {media_grupo:.2f}")
+    
+    nota_max, nota_min, tasa_aprobados = calculo_tasas_notas(lista_alumnos)
 
     print("\n--- Tasas de Aprobados y Suspensos ---")
     if total_alumnos > 0:
@@ -185,7 +190,16 @@ def mostrar_reporte(lista_alumnos):
         
         print(f"Total Aprobados: {aprobados_count} (Tasa: {tasa_aprobados:.2f}%)")
         print(f"Total Suspensos: {suspensos_count} (Tasa: {tasa_suspensos:.2f}%)")
+        print(f"\nAlumno con la nota más alta: {nota_max[0]['nombre']} ({nota_max[1]:.1f})")
+        print(f"Alumno con la nota más baja: {nota_min[0]['nombre']} ({nota_min[1]:.1f})")
+
     else:
         print("No hay alumnos para calcular tasas.")
     
     print("==========================================================")
+    mostrar_clasificacion(lista_alumnos)
+
+#MAIN GUARD FINAL
+if __name__ == "__main__":
+    alumnos = pedir_datos()
+    mostrar_reporte(alumnos)
